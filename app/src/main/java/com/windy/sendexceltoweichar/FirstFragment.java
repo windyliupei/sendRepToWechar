@@ -1,5 +1,6 @@
 package com.windy.sendexceltoweichar;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.windy.sendexceltoweichar.io.GenerateReport;
+
+import java.io.IOException;
 
 public class FirstFragment extends Fragment {
 
@@ -26,7 +31,13 @@ public class FirstFragment extends Fragment {
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AssetManager assets = getActivity().getAssets();
 
+                try {
+                    GenerateReport.generateReport(assets);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
