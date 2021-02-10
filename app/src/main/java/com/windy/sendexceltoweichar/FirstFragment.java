@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,13 +32,27 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        Switch aSwitch = view.findViewById(R.id.switch1);
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    GenerateReport.generateReport(getContext());
+                    GenerateReport.generateReport(getContext(),aSwitch.isChecked());
                 } catch (IOException e) {
                     e.printStackTrace();
+                }
+            }
+        });
+
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    aSwitch.setText(ConstantValues.SHANGBAN);
+                }else {
+                    aSwitch.setText(ConstantValues.XIUXI);
                 }
             }
         });

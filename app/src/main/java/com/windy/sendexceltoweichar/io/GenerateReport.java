@@ -34,7 +34,7 @@ import static com.windy.sendexceltoweichar.ConstantValues.FILENAME_SUFFIX;
 
 public class GenerateReport {
 
-    public static void generateReport(Context context) throws IOException {
+    public static void generateReport(Context context, boolean work) throws IOException {
 
         //Asset 里的模版考到外存储
         String targetFolder = Environment.getExternalStorageDirectory() + File.separator + "windy";
@@ -55,15 +55,26 @@ public class GenerateReport {
                 XSSFRow row = sheet.getRow(i);
                 XSSFCell nameCell = row.getCell(1);
                 XSSFCell tempCell = row.getCell(3);
+                XSSFCell workCell = row.getCell(5);
                 if (tempCell!=null && nameCell.getStringCellValue().length()>1){
                     tempCell.setCellValue(generateTemperature());
+
+                    //设置"上班" or "休息"
+                    String workOrNot = ConstantValues.SHANGBAN;
+                    if (isWorkOrNot(work)){
+                        workOrNot = ConstantValues.SHANGBAN;
+                    }else{
+                        workOrNot = ConstantValues.XIUXI;
+                    }
+
+                    workCell.setCellValue(workOrNot);
                 }
 
             }
         }
         //设置日期
         sheet.getRow(0).getCell(5).setCellValue(generateDate());
-        //设置"上班" or "休息"
+
         //修改结束
         inputStream.close();
 
@@ -130,6 +141,21 @@ public class GenerateReport {
         Calendar cal = Calendar.getInstance();
 
         return  String.valueOf(cal.get(Calendar.YEAR)+"."+monthStr+"."+dateStr);
+
+    }
+
+    public static boolean isWorkOrNot(boolean work){
+
+        Calendar today = Calendar.getInstance();
+        today.setFirstDayOfWeek(Calendar.MONDAY);
+
+        if(today.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || today.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ){
+            return true;
+        }else{
+            //如果不是周末再判断是否公共假期：目前手动输入：0 上班，1：休息
+            return work;
+        }
+
 
     }
 
