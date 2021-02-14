@@ -169,7 +169,7 @@ public class GenerateReport {
         today.setFirstDayOfWeek(Calendar.MONDAY);
 
         if(today.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || today.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ){
-            return true;
+            return false;
         }else{
             //如果不是周末再判断是否公共假期：目前手动输入：0 上班，1：休息
             return work;
