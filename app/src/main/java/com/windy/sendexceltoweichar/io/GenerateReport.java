@@ -259,7 +259,6 @@ public class GenerateReport {
             {".cpp", "text/plain"},
             {".doc", "application/msword"},
             {".exe", "application/octet-stream"},
-            {".xlsx","application/vnd.ms-excel"},
             {".gif", "image/gif"},
             {".gtar", "application/x-gtar"},
             {".gz", "application/x-gzip"},
@@ -308,6 +307,7 @@ public class GenerateReport {
             {".wmv", "audio/x-ms-wmv"},
             {".wps", "application/vnd.ms-works"},
             {".xml", "text/plain"},
+            {".xlsx","application/vnd.ms-excel"},
             {".z", "application/x-compress"},
             {".zip", "application/zip"},
             {"", "*/*"}

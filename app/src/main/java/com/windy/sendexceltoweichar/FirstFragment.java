@@ -17,6 +17,10 @@ import com.windy.sendexceltoweichar.io.GenerateReport;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
+
+
+import static com.windy.sendexceltoweichar.ConstantValues.SHANGBAN;
 
 public class FirstFragment extends Fragment {
 
@@ -31,9 +35,9 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         Switch aSwitch = view.findViewById(R.id.switch1);
+
+        //Sent Button
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,12 +49,19 @@ public class FirstFragment extends Fragment {
             }
         });
 
+        //处理 Switch
+        Calendar today = Calendar.getInstance();
+        today.setFirstDayOfWeek(Calendar.MONDAY);
+        boolean isWeekEnd = today.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || today.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
+        //周末休息,其余上班
+        aSwitch.setChecked(!isWeekEnd);
+        aSwitch.setText(SHANGBAN);
 
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    aSwitch.setText(ConstantValues.SHANGBAN);
+                    aSwitch.setText(SHANGBAN);
                 }else {
                     aSwitch.setText(ConstantValues.XIUXI);
                 }
