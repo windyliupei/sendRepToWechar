@@ -125,14 +125,14 @@ public class GenerateReport {
 
     public static String generateFileName(){
 
-        Date today = new Date();
-        int month = today.getMonth() + 1;
+        Calendar cal = Calendar.getInstance();
+        int month = cal.get(Calendar.MONTH)+1;
         String monthStr = String.valueOf(month);
         if (month<10){
             monthStr="0"+monthStr;
         }
 
-        int date = today.getDate();
+        int date = cal.get(Calendar.DAY_OF_MONTH);
         String dateStr = String.valueOf(date);
         if (date<10){
             dateStr="0"+monthStr;
@@ -144,20 +144,20 @@ public class GenerateReport {
 
     public static String generateDate(){
 
-        Date today = new Date();
-        int month = today.getMonth() + 1;
+        Calendar cal = Calendar.getInstance();
+        int month = cal.get(Calendar.MONTH)+1;
         String monthStr = String.valueOf(month);
         if (month<10){
             monthStr="0"+monthStr;
         }
 
-        int date = today.getDate();
+        int date = cal.get(Calendar.DAY_OF_MONTH);
         String dateStr = String.valueOf(date);
         if (date<10){
             dateStr="0"+monthStr;
         }
 
-        Calendar cal = Calendar.getInstance();
+
 
         return  String.valueOf(cal.get(Calendar.YEAR)+"."+monthStr+"."+dateStr);
 
