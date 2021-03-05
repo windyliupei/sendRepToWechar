@@ -103,7 +103,6 @@ public class GenerateReport {
         outputStream.close();
         workbook.close();
 
-        Toast.makeText(context,"生成成功，请分享WX",Toast.LENGTH_SHORT).show();
 
         shareWechatFriend(context,new File(targetFolder+File.separator+targetFile));
     }
@@ -135,7 +134,7 @@ public class GenerateReport {
         int date = cal.get(Calendar.DAY_OF_MONTH);
         String dateStr = String.valueOf(date);
         if (date<10){
-            dateStr="0"+monthStr;
+            dateStr="0"+dateStr;
         }
 
         return ConstantValues.FILENAME_PREFIX + monthStr+dateStr +FILENAME_SUFFIX;
@@ -154,7 +153,7 @@ public class GenerateReport {
         int date = cal.get(Calendar.DAY_OF_MONTH);
         String dateStr = String.valueOf(date);
         if (date<10){
-            dateStr="0"+monthStr;
+            dateStr="0"+dateStr;
         }
 
 
@@ -225,7 +224,7 @@ public class GenerateReport {
             // context.startActivity(intent);
             mContext.startActivity(Intent.createChooser(intent, "Share"));
         } else {
-            Toast.makeText(mContext, "您需要安装微信客户端", Toast.LENGTH_LONG).show();
+            //Toast.makeText(mContext, "您需要安装微信客户端", Toast.LENGTH_LONG).show();
         }
     }
 

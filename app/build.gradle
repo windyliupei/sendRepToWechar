@@ -41,5 +41,5 @@ dependencies {
 
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    //implementation 'org.apache.poi:poi-ooxml:4.1.2'
+    compile 'com.github.ForgetAll:LoadingDialog:v1.1.2'
 }
