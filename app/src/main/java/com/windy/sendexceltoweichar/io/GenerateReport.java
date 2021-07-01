@@ -72,7 +72,9 @@ public class GenerateReport {
                 XSSFRow row = sheet.getRow(i);
                 XSSFCell nameCell = row.getCell(1);
                 XSSFCell tempCell = row.getCell(3);
+                XSSFCell xingChengDiCell = row.getCell(4);
                 XSSFCell workCell = row.getCell(5);
+
                 if (tempCell!=null && nameCell.getStringCellValue().length()>1){
                     tempCell.setCellValue(generateTemperature());
 
@@ -80,8 +82,10 @@ public class GenerateReport {
                     String workOrNot = ConstantValues.SHANGBAN;
                     if (isWorkOrNot(work)){
                         workOrNot = ConstantValues.SHANGBAN;
+                        xingChengDiCell.setCellValue("京津");
                     }else{
                         workOrNot = ConstantValues.XIUXI;
+                        xingChengDiCell.setCellValue("天津");
                     }
 
                     workCell.setCellValue(workOrNot);
